@@ -21,6 +21,7 @@ export const createLogger = (options: CreateLoggerOptions): Logger => {
 
     return pino({
         name,
+        level: process.env.LOG_LEVEL || "info",
         ...rest,
         transport,
     })
