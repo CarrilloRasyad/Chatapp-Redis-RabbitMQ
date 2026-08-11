@@ -7,8 +7,11 @@ const envSchema = z.object({
     AUTH_SERVICE_PORT: z.coerce.number().int().min(0).max(65_535).default(4003),
 });
 
+// outputnya: {NODE_ENV, AUTH_SERVICE_PORT}
+// bukan mengambil value/nilai dari variable envSchema
 type EnvType = z.infer<typeof envSchema>;
 
+// anotation eksplisit variable env itu harus bertipe EnvType
 export const env: EnvType = createEnv(envSchema, {serviceName: "auth-service"});
 
 export type Env = typeof env;
