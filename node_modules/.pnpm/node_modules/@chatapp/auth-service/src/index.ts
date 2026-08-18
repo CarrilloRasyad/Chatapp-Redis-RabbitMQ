@@ -2,6 +2,7 @@ import { createApp } from "@/app.js";
 import { createServer } from "http";
 import { env } from "@/config/env.js";
 import { logger } from "@/utils/logger.js";
+import { error } from "console";
 
 const main = async()=> {
     try {
@@ -13,10 +14,24 @@ const main = async()=> {
         server.listen(port, () => {
             logger.info({port}, "Auth service is running");
         });
+        const shutdown = () => {
+            logger.info("Shutting down auth service...");
+    
+            Promise.all([]).catch((error: unknown) => {
+                logger.error({error}, "Error during shutdown tasks");
+            })
+            .finally(() => {
+                server.close(() => process.exit(0));
+            });
+        };
+
+        process.on('SIGNIT', shutdown);
+        process.on('SIGNTERM', shutdown);
     } catch (error) {
         logger.error({error}, "Failed to start auth service");
         process.exit(1);
     }
+
 }
 
 void main();
