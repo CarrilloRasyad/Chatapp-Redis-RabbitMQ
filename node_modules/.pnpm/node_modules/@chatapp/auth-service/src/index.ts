@@ -25,8 +25,8 @@ const main = async()=> {
             });
         };
 
-        process.on('SIGNIT', shutdown);
-        process.on('SIGNTERM', shutdown);
+        process.on('SIGINT', shutdown);
+        process.on('SIGTERM', shutdown);
     } catch (error) {
         logger.error({error}, "Failed to start auth service");
         process.exit(1);
