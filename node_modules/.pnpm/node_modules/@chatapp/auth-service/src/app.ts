@@ -1,5 +1,6 @@
 import express, {type Application} from "express";
-// import 
+import cors from 'cors';
+import helmet from 'helmet';
 
 
 export const createApp = (): Application => {
@@ -8,7 +9,7 @@ export const createApp = (): Application => {
     app.use(helmet());
     app.use(
         cors({
-            origin: "*",
+            origin: '*',
             credentials: true,
         })
     );

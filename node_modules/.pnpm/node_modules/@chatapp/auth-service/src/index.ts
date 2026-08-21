@@ -2,7 +2,7 @@ import { createApp } from "@/app.js";
 import { createServer } from "http";
 import { env } from "@/config/env.js";
 import { logger } from "@/utils/logger.js";
-import { error } from "console";
+// import { error } from "console";
 
 const main = async()=> {
     try {
