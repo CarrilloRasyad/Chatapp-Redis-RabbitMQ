@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createEnv = void 0;
-const createEnv = (schema, options = {}) => {
+export const createEnv = (schema, options = {}) => {
     const { source = process.env, serviceName = "service" } = options;
     const parsed = schema.safeParse(source);
     if (!parsed.success) {
@@ -10,5 +7,4 @@ const createEnv = (schema, options = {}) => {
     }
     return parsed.data;
 };
-exports.createEnv = createEnv;
 //# sourceMappingURL=env.js.map
