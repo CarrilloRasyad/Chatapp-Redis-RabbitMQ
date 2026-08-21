@@ -2,7 +2,6 @@ import { createApp } from "@/app.js";
 import { createServer } from "http";
 import { env } from "@/config/env.js";
 import { logger } from "@/utils/logger.js";
-// import { error } from "console";
 
 const main = async()=> {
     try {
@@ -21,7 +20,10 @@ const main = async()=> {
                 logger.error({error}, "Error during shutdown tasks");
             })
             .finally(() => {
-                server.close(() => process.exit(0));
+                server.close(() => {
+                    logger.flush(() => process.exit(0));
+                });
+                
             });
         };
 

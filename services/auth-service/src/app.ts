@@ -1,7 +1,7 @@
 import express, {type Application} from "express";
 import cors from 'cors';
 import helmet from 'helmet';
-import { errorHandler } from "./middleware/error-handler.js";
+import { errorHandler } from "@/middleware/error-handler.js";
 
 
 export const createApp = (): Application => {
