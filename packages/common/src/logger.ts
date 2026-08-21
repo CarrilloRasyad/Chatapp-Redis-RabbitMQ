@@ -1,6 +1,10 @@
 import pino from 'pino';
 
+import { createRequire } from 'module';
+
 import type { Logger, LoggerOptions } from 'pino';
+
+const require = createRequire(import.meta.url);
 
 type CreateLoggerOptions = LoggerOptions & {
     name: string;
@@ -11,7 +15,7 @@ export const createLogger = (options: CreateLoggerOptions): Logger => {
     
     const transport = process.env.NODE_ENV === "development"
     ? {
-        target: "pino-pretty",
+        target: require.resolve('pino-pretty'),
         options: {
             colorsize: true,
             translateTime: "SYS:standard",
